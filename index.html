@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Placement Cell, SRCC - Directory</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0f1c 0%, #1a1f3a 25%, #2d3561 50%, #1a1f3a 75%, #0a0f1c 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Main page background - College Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Replace with your GitHub raw URL */
+            background: url('https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPOSITORY/main/images/college-background.jpg') center/cover;
+            filter: blur(8px) brightness(0.3) contrast(1.2) saturate(1.1);
+            opacity: 0.4;
+            z-index: -3;
+        }
+        
+        /* Animated particles */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(2px 2px at 40px 60px, rgba(255,255,255,0.3), transparent),
+                radial-gradient(2px 2px at 90px 40px, rgba(255,255,255,0.2), transparent),
+                radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.4), transparent),
+                radial-gradient(1px 1px at 160px 30px, rgba(255,255,255,0.3), transparent);
+            background-repeat: repeat;
+            background-size: 200px 100px;
+            animation: sparkle 20s linear infinite;
+            z-index: -2;
+        }
+        
+        @keyframes sparkle {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-100px); }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(25px) saturate(180%);
+            border-radius: 35px;
+            padding: 50px;
+            box-shadow: 
+                0 25px 50px rgba(0,0,0,0.15),
+                0 0 0 1px rgba(255,255,255,0.8),
+                inset 0 1px 0 rgba(255,255,255,0.9);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent 0deg, rgba(99, 102, 241, 0.03) 60deg, transparent 120deg);
+            animation: rotate 25s linear infinite;
+            z-index: -1;
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+        
+        .logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            box-shadow: 
+                0 10px 25px rgba(99, 102, 241, 0.3),
+                0 0 0 3px rgba(255,255,255,0.1),
+                inset 0 1px 0 rgba(255,255,255,0.2);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            padding: 3px;
+            object-fit: cover;
+        }
+        
+        .logo:hover {
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 
+                0 15px 35px rgba(99, 102, 241, 0.5),
+                0 0 0 5px rgba(255,255,255,0.2),
+                inset 0 1px 0 rgba(255,255,255,0.3);
+        }
+        
+        h1 {
+            background: linear-gradient(135deg, #1e293b 0%, #475569 30%, #64748b 60%, #334155 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 0;
+            font-size: 3.2em;
+            font-weight: 800;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            letter-spacing: -1px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: rgba(51, 65, 85, 0.8);
+            font-size: 1.4em;
+            margin-bottom: 50px;
+            font-weight: 300;
+            position: relative;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        .subtitle::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, rgba(99, 102, 241, 0.8) 50%, transparent 100%);
+            border-radius: 2px;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+            justify-items: center;
+            align-items: start;
+        }
+        
+        .person-card {
+            position: relative;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(15px) saturate(180%);
+            border-radius: 25px;
+            padding: 35px 30px;
+            text-align: center;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            overflow: hidden;
+            cursor: pointer;
+            width: 100%;
+            max-width: 350px;
+            height: fit-content;
+        }
+        
+        /* Card background - College Image 1 */
+        .person-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            /* Replace with your GitHub raw URL */
+            background: url('https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPOSITORY/main/images/college-image-1.jpg') center/cover;
+            filter: blur(5px) brightness(0.4) contrast(1.1) saturate(1.2);
+            opacity: 0;
+            transition: all 0.5s ease;
+            z-index: -2;
+        }
+        
+        /* Card background - College Image 2 */
+        .person-card:nth-child(even)::before {
+            background: url('https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPOSITORY/main/images/college-image-2.jpg') center/cover;
+        }
+        
+        .person-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(45deg, transparent 30%, rgba(99, 102, 241, 0.1) 50%, transparent 70%),
+                radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 60%);
+            opacity: 0;
+            transition: all 0.5s ease;
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        .person-card:hover::before {
+            opacity: 0.7;
+            transform: scale(1.05);
+        }
+        
+        .person-card:hover::after {
+            opacity: 1;
+        }
+        
+        .person-card:hover {
+            transform: translateY(-15px) scale(1.05);
+            box-shadow: 
+                0 35px 70px rgba(99, 102, 241, 0.4),
+                0 0 0 1px rgba(255, 255, 255, 0.8),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            border-color: rgba(99, 102, 241, 0.5);
+            background: rgba(255, 255, 255, 0.95);
+        }
+        
+        .person-card:active {
+            transform: translateY(-10px) scale(1.02);
+        }
+        
+        .person-name {
+            font-size: 1.6em;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1e293b 0%, #475569 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+        
+        .person-card:hover .person-name {
+            color: white;
+            -webkit-text-fill-color: white;
+            text-shadow: 0 2px 15px rgba(0,0,0,0.7);
+            transform: translateY(-2px);
+        }
+        
+        .person-link {
+            display: inline-block;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.8) 0%, rgba(67, 56, 202, 0.8) 100%);
+            color: white;
+            text-decoration: none;
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            z-index: 2;
+            box-shadow: 
+                0 8px 20px rgba(99, 102, 241, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-size: 0.9em;
+        }
+        
+        .person-link:hover {
+            background: linear-gradient(135deg, rgba(67, 56, 202, 0.9) 0%, rgba(99, 102, 241, 0.9) 100%);
+            transform: translateY(-3px);
+            box-shadow: 
+                0 15px 35px rgba(99, 102, 241, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+        
+        .person-card:hover .person-link {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.8) 100%);
+            color: #1e1b4b;
+            font-weight: 700;
+            box-shadow: 
+                0 10px 30px rgba(255, 255, 255, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+        }
+        
+        /* Image loading fallback */
+        .logo {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.5em;
+        }
+        
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+                margin: 10px;
+                border-radius: 25px;
+            }
+            
+            .header {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+            
+            h1 {
+                font-size: 2.5em;
+                text-align: center;
+            }
+            
+            .subtitle {
+                font-size: 1.1em;
+                margin-bottom: 35px;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            
+            .person-card {
+                padding: 30px 25px;
+                max-width: 350px;
+                width: 100%;
+            }
+            
+            .person-name {
+                font-size: 1.3em;
+            }
+            
+            .person-link {
+                padding: 12px 30px;
+                font-size: 0.85em;
+            }
+        }
+        
+        /* Touch device specific styles */
+        @media (hover: none) and (pointer: coarse) {
+            .person-card:active {
+                transform: translateY(-10px) scale(1.02);
+                box-shadow: 
+                    0 25px 50px rgba(99, 102, 241, 0.5),
+                    0 0 0 1px rgba(255, 255, 255, 0.2),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            }
+            
+            .person-card:active::before {
+                opacity: 0.8;
+                transform: scale(1.03);
+            }
+            
+            .person-card:active::after {
+                opacity: 1;
+            }
+            
+            .person-card:active .person-name {
+                color: white;
+                -webkit-text-fill-color: white;
+                text-shadow: 0 2px 15px rgba(0,0,0,0.7);
+            }
+            
+            .person-card:active .person-link {
+                background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.8) 100%);
+                color: #1e1b4b;
+                font-weight: 700;
+            }
+        }
+        
+        /* Smooth staggered animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .person-card {
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        .person-card:nth-child(1) { animation-delay: 0.1s; }
+        .person-card:nth-child(2) { animation-delay: 0.15s; }
+        .person-card:nth-child(3) { animation-delay: 0.2s; }
+        .person-card:nth-child(4) { animation-delay: 0.25s; }
+        .person-card:nth-child(5) { animation-delay: 0.3s; }
+        .person-card:nth-child(6) { animation-delay: 0.35s; }
+        .person-card:nth-child(7) { animation-delay: 0.4s; }
+        .person-card:nth-child(8) { animation-delay: 0.45s; }
+        .person-card:nth-child(9) { animation-delay: 0.5s; }
+        .person-card:nth-child(10) { animation-delay: 0.55s; }
+        .person-card:nth-child(11) { animation-delay: 0.6s; }
+        .person-card:nth-child(12) { animation-delay: 0.65s; }
+        .person-card:nth-child(13) { animation-delay: 0.7s; }
+        .person-card:nth-child(14) { animation-delay: 0.75s; }
+        .person-card:nth-child(15) { animation-delay: 0.8s; }
+        
+        /* Header animation */
+        .header {
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        .subtitle {
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+        
+        /* Micro-interactions */
+        .person-card:hover .person-name {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+        
+        /* Glassmorphism enhancement */
+        .person-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px) saturate(180%);
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: rgba(99, 102, 241, 0.5);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(99, 102, 241, 0.7);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <!-- Replace with your GitHub raw URL -->
+            <img src="https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPOSITORY/main/images/srcc-logo.png" alt="SRCC Logo" class="logo">
+            <h1>The Placement Cell, SRCC</h1>
+        </div>
+        <p class="subtitle">Directory</p>
+        
+        <div class="grid">
+            <div class="person-card">
+                <div class="person-name">Aaditya Goyal</div>
+                <a href="aaditya-goyal.html" class="person-link">More Details</a>
+            </div>
+            <div class="person-card">
+                <div class="person-name">Aayati Goyal</div>
+                <a href="aayati-goyal.html" class="person-link">More Details</a>
+            </div>
+            <div class="person-card">
+                <div class="person-name">Aditya C</div>
+                <a href="aditya-c.html" class="person-link">More Details</a>
+            </div>
+            <div class="person-card">
+                <div class="person-name">Ashish Kohli</div>
+                <a href="ashish-kohli.html" class="person-link">More Details</a>
+            </div>
+            <div class="person-card">
+                <div class="person-name">Dhwani</div>
+                <a href="dhwani.html" class="person-link">More Details</a>
+            </div>
+            <div class="person-card">
+                <div class="person-name">Eshani Chaudhary</div>
+                <a href="eshani-chaudhary.html" class="person-link">More Details</a>
+            </div>
+            <div class="person-card">
+                <div class="person-name">Gunjan Gupta</div>
+                <a href="gunjan-gupta.html" class="person-link">More Details</a>
+            </div>
+            <div class="person-card">
+                <div class="person-name">Harshit Sharma</div>
+                <a href="harshit-sharma.html" class="person-link">More Details</a>
+            </div>
+            <div class="person-card">
+                <div class="person-name">Manzil Sharma</div>
+                <a href="manzil-sharma.html" class="person-link">More Details</a>
+            </div>
+            <div class="person-card">
+                <div class="person-name">Mothi Krishna</div>
+                <a href="mothi-krishna.html" class="person-link">More Details</a>
+            </div>
+            <div class="person-card">
+                <div class="person-name">Rohan Gehani</div>
+                <a href="rohan-gehani.html" class="person-link">More Details</a>
+            </div>
+            <div class="person-card">
+                <div class="person-name">Sandeep Ramani</div>
+                <a href="sandeep-ramani.html" class="person-link">More Details</a>
+            </div>
+            <div class="person-card">
+                <div class="person-name">Shouraya Aggarwal</div>
+                <a href="shouraya-aggarwal.html" class="person-link">More Details</a>
+            </div>
+            <div class="person-card">
+                <div class="person-name">Tanvi Bansal</div>
+                <a href="tanvi-bansal.html" class="person-link">More Details</a>
+            </div>
+            <div class="person-card">
+                <div class="person-name">Sjonum Walia</div>
+                <a href="sjonum-walia.html" class="person-link">More Details</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
